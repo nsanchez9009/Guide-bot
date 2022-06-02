@@ -2,10 +2,16 @@ from email.policy import default
 import lightbulb
 import hikari
 import random
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
+
+bot_token = os.environ['BOT_TOKEN']
 
 #Creating the bot
 bot = lightbulb.BotApp(
-    token="OTgxNzY4NDg1NDkzNDE1OTg2.GBBNaa.B1RrkXptmLK8bCvYUG4K1ungw9pr8OYFfdCuaw",
+    token=bot_token,
     default_enabled_guilds=(331608355913203713)
 )
 
@@ -59,7 +65,7 @@ async def pingPong(ctx): #every function requires a context variable
 @lightbulb.command("8ball", "Will send a random 8 ball message")
 @lightbulb.implements(lightbulb.SlashCommand)
 async def eightBall(ctx):
-    await ctx.respond(random.choice(eightBallMessages))
+    await ctx.respond(f"Question: {ctx.options.question}\nThe 8ball says...{random.choice(eightBallMessages)}")
 
 
 
