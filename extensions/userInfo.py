@@ -52,7 +52,7 @@ async def info(ctx: lightbulb.Context) -> None:
         )
         .add_field(
             "Roles",
-            ", ".join(r.mention for r in roles),
+            ", ".join(r.mention for r in roles) or "No roles",
             inline=False
         )
     )
