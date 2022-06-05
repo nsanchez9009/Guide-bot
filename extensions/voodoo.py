@@ -1,3 +1,4 @@
+from curses.ascii import isdigit
 import hikari
 import lightbulb
 
@@ -9,12 +10,25 @@ vooDoo_plugin = lightbulb.Plugin("Voodoo")
 @lightbulb.command("voodoo", "description was too long")
 @lightbulb.implements(lightbulb.SlashCommand)
 async def vooDoo(ctx):
-    #get the bots nickname. Get the numbers in the bots nickname.
-    #store them and add 1 to the number
-    #change the nickname with bot.rest.edit_my_user(username="new kewl username")
-
     botUser = ctx.get_guild().get_my_member()
-    botNick = botUser.display_name
+    guild = ctx.get_guild()
+    bot = ctx.bot
+    wof = hikari.File('./media/wof.gif')
+
+    res = [str(i) for i in botUser.display_name.split() if i.isdigit()]
+
+    if len(res) == 0:
+        await bot.rest.edit_my_member(guild, nickname = f"Guide 1")
+    
+    elif res == 1:
+        await bot.rest.edit_my_member(guild, nickname = f"Guide 2")
+    else:
+        res = int("".join(res)) + 1
+        await bot.rest.edit_my_member(guild, nickname = f"Guide {res}")
+
+    await ctx.respond(f"The guide has been slain...\nGuide {res} has arrived.")
+    await ctx.respond(wof)
+
 
 
 def load (bot: lightbulb.BotApp):
