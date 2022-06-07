@@ -1,13 +1,9 @@
-from dotenv import load_dotenv
-
 import hikari
 import lightbulb
-import os
 import requests
 
-load_dotenv()
-
-wolf_api = os.environ['WOLF_API']
+file = open("./tokens/WOLF_API.txt", "r")
+wolf_api = file.read()
 oracle_plugin = lightbulb.Plugin("Oracle")
 
 @oracle_plugin.command

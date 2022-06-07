@@ -1,16 +1,11 @@
 #current link https://discord.com/api/oauth2/authorize?client_id=981768485493415986&permissions=8&scope=bot%20applications.commands
-
 from email.policy import default
-from dotenv import load_dotenv
-from hikari import Intents, guilds
 
 import lightbulb
 import hikari
-import os
 
-load_dotenv()
-
-bot_token = os.environ['BOT_TOKEN']
+file = open("./tokens/BOT_TOKEN.txt", "r")
+bot_token = file.read()
 
 #Creating the bot
 bot = lightbulb.BotApp(
@@ -19,7 +14,7 @@ bot = lightbulb.BotApp(
     default_enabled_guilds=(331608355913203713, 831400778643406848),
 )
 
-bot.load_extensions_from("./extensions/", must_exist=True)
+bot.load_extensions_from("./extensions", must_exist=True)
 
 #--------------------------------------------------------------------------------------------------------------------
 
