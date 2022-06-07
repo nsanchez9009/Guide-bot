@@ -14,7 +14,7 @@
   <a href="#how-to-use">How To Use</a> •
   <a href="#invite">Invite</a> •
   <a href="#credits">Credits</a> •
-  <a href="#related">Related</a> •
+  <a href="#related">Related</a>
 </p>
 
 ## Key Features
